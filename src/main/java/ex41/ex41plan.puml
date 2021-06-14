@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Person{
+    - firstName: String
+    - lastName: String
+
+    <<constructor>> Person(firstName: String, lastName: String)
+    + getFirstName(): String
+    + setFirstName(first: String)
+    + getLastName(): String
+    + setLastName(last: Sting)
+}
+
+@enduml
