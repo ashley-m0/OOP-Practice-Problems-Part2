@@ -4,19 +4,22 @@
 Person <|-- ArrayList
 
 class ArrayList {
-Person[]: firstName, lastName
+Person[]: firstName, lastName, salary
 size()
 }
 
 class Person{
     - firstName: String
     - lastName: String
+    - salary: int
 
-    <<constructor>> Person(firstName: String, lastName: String)
+    <<constructor>> Person(firstName: String, lastName: String, salary: int)
     + getFirstName(): String
     + setFirstName(first: String)
     + getLastName(): String
     + setLastName(last: Sting)
+    + getSalary(): int
+    + setSalary(num: int)
 }
 
 
