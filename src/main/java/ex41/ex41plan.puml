@@ -3,6 +3,7 @@
 
 Person <|-- ArrayList
 
+
 class ArrayList {
 Person[]: firstName, lastName
 size()

@@ -44,5 +44,67 @@ Sort the results by salary from highest to lowest.
 Rework your program to use a CSV parsing library and compare the results.
  */
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class App {
+    public static void main(String[] args) {
+        App myApp = new App();
+        File inText = new File("src/main/java/ex42/exercise42_input.txt");
+        ArrayList<Person> database = myApp.readInput(inText);
+        String message = myApp.formatInformation(database);
+        System.out.print(message);
+    }
+
+    //static method that returns an array of people that reads text for a given file
+    public ArrayList<Person> readInput(File inText){
+        ArrayList<Person> database = new ArrayList<Person>();
+
+        try {
+            Scanner input = new Scanner(inText);
+            while (input.hasNextLine()) {
+                //read info and store in String variable
+                String data = input.next();
+                //insert Person object with data into array
+                database.add(createPerson(data));
+            }
+            input.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return database;
+    }
+
+    public Person createPerson(String data){
+        String[] dataList = data.split(",");
+        int salary = Integer.parseInt(dataList[2]);
+        Person myPerson = new Person(dataList[1], dataList[0], salary);
+        return myPerson;
+    }
+
+    public String formatInformation(ArrayList<Person> database){
+        String message = "Last      First    Salary\n" + "--------------------------\n";
+        for(int i = 0; i < database.size(); i++){
+            String first = database.get(i).getFirstName();
+            String last = database.get(i).getLastName();
+            int salary = database.get(i).getSalary();
+            message += last;
+            if (last.length() < 10){
+                for (int j = last.length(); j < 11; j++)
+                    message += " ";
+            }
+            message += first;
+            if (first.length() < 9){
+                for (int j = first.length(); j < 10; j++)
+                    message += " ";
+            }
+            message += salary + "\n";
+
+        }
+        return message;
+    }
 }
