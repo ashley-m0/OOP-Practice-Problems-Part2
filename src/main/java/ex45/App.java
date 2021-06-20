@@ -36,4 +36,7 @@ Modify the program so it can handle every file a folder of files instead of a si
  */
 
 public class App {
+    public static void main(String[] args) {
+
+    }
 }

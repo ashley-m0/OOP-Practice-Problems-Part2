@@ -3,6 +3,11 @@
 
 Person <|-- ArrayList
 
+class App{
+    + readInput(inText: File): ArrayList<Person>
+    + sortNames(database: ArrayList<Person>): ArrayList<Person>
+    + formatInformation(database: ArrayList<Person>): String
+}
 
 class ArrayList {
 Person[]: firstName, lastName

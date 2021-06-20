@@ -53,9 +53,13 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         App myApp = new App();
+        //initialize file that will be scanned
         File inText = new File("src/main/java/ex42/exercise42_input.txt");
+        //initalize array list and call method to fill the list
         ArrayList<Person> database = myApp.readInput(inText);
+        //initialize string variable and call method to format info into string
         String message = myApp.formatInformation(database);
+        //print string
         System.out.print(message);
     }
 
@@ -79,32 +83,46 @@ public class App {
         return database;
     }
 
+    //method that returns a Person object that is filled with information from a given string
     public Person createPerson(String data){
+        //split info in string into an array where each of the commas are
         String[] dataList = data.split(",");
+        //convert salary string into an int variable
         int salary = Integer.parseInt(dataList[2]);
+        //create object with information and return the object
         Person myPerson = new Person(dataList[1], dataList[0], salary);
         return myPerson;
     }
 
+    //method that formats the information given from a Person ArrayList into a String that will be printed
     public String formatInformation(ArrayList<Person> database){
+        //initialize String message with the headers
         String message = "Last      First    Salary\n" + "--------------------------\n";
+        //for loop that iterates for each element of the arraylist (0 to array list size)
         for(int i = 0; i < database.size(); i++){
+            //get all elements of each object
             String first = database.get(i).getFirstName();
             String last = database.get(i).getLastName();
             int salary = database.get(i).getSalary();
+            //add last name to message
             message += last;
+            //if the name is less than the space in the table add the appropriate amount of spaces
             if (last.length() < 10){
                 for (int j = last.length(); j < 11; j++)
                     message += " ";
             }
+            //add first name to message
             message += first;
+            //if the name is less than the space in the table add the appropriate amount of spaces
             if (first.length() < 9){
                 for (int j = first.length(); j < 10; j++)
                     message += " ";
             }
+            //add salary to message
             message += salary + "\n";
 
         }
+        //once loop completes return message
         return message;
     }
 }

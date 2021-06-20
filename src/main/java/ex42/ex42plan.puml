@@ -3,6 +3,12 @@
 
 Person <|-- ArrayList
 
+class App{
+    + readInput(inText: File): ArrayList<Person>
+    + createPerson(data: String): Person
+    + formatInformation(database: ArrayList<Person>): String
+}
+
 class ArrayList {
 Person[]: firstName, lastName, salary
 size()
