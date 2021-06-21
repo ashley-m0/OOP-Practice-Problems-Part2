@@ -1,17 +1,12 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-ArrayList <|-- Site
+Site <|-- App
 
 class App{
     + getUserInput(): Site
-    + createFile(Site info):
+    + createFile(mySite):
     + createMessage(Site info): String
-}
-
-class ArrayList {
-Site[] elementData
-size()
 }
 
 class Site{

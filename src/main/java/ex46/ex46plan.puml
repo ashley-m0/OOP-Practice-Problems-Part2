@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+WordDetector <|-- App
+
+class App{
+    + readFile(inText:File): ArrayList<WordDetector>
+    + formatMessage(myDetector: ArrayList<WordDetector>): String
+    + fixOrder(myDetector: ArrayList<WordDetector>): ArrayList<WordDetector>
+}
+
+class WordDetector{
+    - word:String
+    - count:int
+
+    <<constructor>>WordDetector(word:String, count:int)
+    + getWord():String
+    + getCount():int
+    + addToCount()
+
+}
+
+@enduml

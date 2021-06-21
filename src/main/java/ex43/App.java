@@ -34,5 +34,67 @@ Implement this in a scripting language on Windows, OSX, and Linux.
 Implement this as a web application that provides the specified site as a zip file.
  */
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class App {
+
+    public static Scanner input = new Scanner(System.in);
+    public static void main(String[] args) {
+        //Initialize App object
+        App myApp = new App();
+        //Initialize a Site object and call getUserInput method to fill Site
+        Site mySite = myApp.getUserInput();
+        //Initialize a file and call the createFiles method to fill
+        File myFile = myApp.createFile(mySite);
+        //Initialize the output message and call the createMessage method to fill
+    }
+
+    //public method that gets user input on what files to create
+    public Site getUserInput(){
+        //prompt user for site name and scan
+        System.out.print("Site name: ");
+        String sitename = input.nextLine();
+        //prompt user for author name and scan
+        System.out.print("Author: ");
+        String author = input.nextLine();
+        //prompt user for javascript and scan
+        System.out.print("Do you want a folder for JavaScript? ");
+        String javaString = input.nextLine();
+        //turn string into a boolean variable
+        boolean javascript = Boolean.parseBoolean(javaString);
+        //prompt user for css and scan
+        System.out.print("Do you want a folder for CSS? ");
+        String cssString = input.nextLine();
+        //turn string into a boolean variable
+        boolean css = Boolean.parseBoolean(cssString);
+
+        //initalize site object with all of user input
+        Site mySite = new Site(sitename, author, javascript, css);
+        return mySite;
+    }
+
+    //public method that creates files according to user input
+    public File createFile(Site mySite){
+        String fileDirectory = "C:\\Users\\mashl\\IdeaProjects\\test\\untitled\\mojica-cop3330-ex23\\mojica-cop3330-assignment3\\src\\main\\java\\ex43\\website\\";
+        String path = fileDirectory.concat(mySite.getSiteName());
+        path = fileDirectory.concat("\\index.html");
+        File myFile = new File(path);
+        try {
+            if (myFile.createNewFile()) {
+                System.out.println("File created: " + myFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return myFile;
+    }
+
+
+
+
 }
