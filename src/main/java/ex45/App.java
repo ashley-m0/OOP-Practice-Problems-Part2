@@ -35,8 +35,57 @@ coded value.
 Modify the program so it can handle every file a folder of files instead of a single file.
  */
 
-public class App {
-    public static void main(String[] args) {
+import ex41.Person;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class App {
+    public static Scanner input = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        App myApp = new App();
+        WordFinder myWordFinder = new WordFinder("utilize", "use");
+        System.out.print("Enter name of output file: ");
+        String outTextString = input.nextLine();
+        File outText = new File(outTextString);
+        File inText = new File("src/main/java/ex45/exercise45_input.txt");
+        String message = myApp.changeFile(inText, myWordFinder);
+        FileWriter myWriter = new FileWriter(outText);
+        myWriter.write(message);
+        myWriter.close();
     }
+
+    public String changeFile(File inText, WordFinder myWordFinder){
+        String message= "";
+        try {
+            Scanner inputFile = new Scanner(inText);
+            while (inputFile.hasNext()) {
+                String scannedWord = inputFile.next();
+                String searchWord = myWordFinder.getSearchWord();
+                String[] words= null;
+                words = scannedWord.split(" ");  //Split the word using space
+                for (String word : words)
+                {
+                    if (word.equals(searchWord))   //Search for the given word
+                    {
+                        message += myWordFinder.getChangeWord();   //If Present increase the count by one
+                    }else{
+                        message += scannedWord;
+                    }
+                }
+                message += " ";
+            }
+            inputFile.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return message;
+    }
+
 }

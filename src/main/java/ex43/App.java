@@ -78,7 +78,7 @@ public class App {
 
     //public method that creates files according to user input
     public File createFile(Site mySite){
-        String fileDirectory = "C:\\Users\\mashl\\IdeaProjects\\test\\untitled\\mojica-cop3330-ex23\\mojica-cop3330-assignment3\\src\\main\\java\\ex43\\website\\";
+        String fileDirectory = "C:\\Users\\mashl\\IdeaProjects\\test\\untitled\\mojica-cop3330-ex23\\mojica-cop3330-assignment3\\src\\main\\java\\ex43\\website";
         String path = fileDirectory.concat(mySite.getSiteName());
         path = fileDirectory.concat("\\index.html");
         File myFile = new File(path);
